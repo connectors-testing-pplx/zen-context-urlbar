@@ -1,0 +1,37 @@
+[
+  {
+    "property": "uc.contexturlbar.enabled",
+    "label": "Enable the context-menu address bar (enabled by default)",
+    "type": "checkbox",
+    "defaultValue": "true"
+  },
+  {
+    "property": "uc.contexturlbar.openin",
+    "label": "Where to open: current | tab | bg-tab (leave 'tab' for a new foreground tab)",
+    "type": "string",
+    "defaultValue": "tab"
+  },
+  {
+    "property": "uc.contexturlbar.autocomplete",
+    "label": "Show history & bookmark autocomplete suggestions (enabled by default)",
+    "type": "checkbox",
+    "defaultValue": "true"
+  },
+  {
+    "property": "uc.contexturlbar.enginesearch",
+    "label": "Enable @engine selection (e.g. @ddg, @google) (enabled by default)",
+    "type": "checkbox",
+    "defaultValue": "true"
+  },
+  {
+    "property": "uc.contexturlbar.intabmenu",
+    "label": "Also add the address bar to the tab right-click menu",
+    "type": "checkbox"
+  },
+  {
+    "property": "uc.contexturlbar.rememberquery",
+    "label": "Remember the last typed query between sessions (enabled by default)",
+    "type": "checkbox",
+    "defaultValue": "true"
+  }
+]

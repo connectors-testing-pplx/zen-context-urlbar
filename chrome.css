@@ -1,0 +1,83 @@
+/* Zen Context URL Bar — chrome.css
+ * Styling layer for the embedded context-menu address bar so it matches
+ * Zen Browser's URL bar aesthetics.
+ *
+ * This CSS file is the "theme-store compatible" visual layer. The full
+ * functional address bar requires the accompanying ZenContextUrlBar.uc.js
+ * script (installed via fx-autoconfig). See readme.md for details.
+ */
+
+/* The embedded address bar row inside the content-area context menu */
+#zen-context-urlbar-row,
+#zen-context-urlbar-row-tab {
+  padding: 4px 6px !important;
+  background: var(--zen-main-browser-background, transparent) !important;
+}
+
+/* The HTML <input> inside the row */
+#zen-context-urlbar-input,
+#zen-context-urlbar-input-tab {
+  font-size: 13px !important;
+  border-radius: var(--zen-button-radius, 8px) !important;
+  border: 1px solid var(--zen-button-border, rgba(255, 255, 255, 0.18)) !important;
+  background: var(--zen-main-browser-background, #2b2b2b) !important;
+  color: var(--zen-text-color, #fff) !important;
+  padding: 5px 8px !important;
+  outline: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+#zen-context-urlbar-input:focus,
+#zen-context-urlbar-input-tab:focus {
+  border-color: var(--zen-primary-color, #4d8eff) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--zen-primary-color, #4d8eff) 35%, transparent) !important;
+}
+
+#zen-context-urlbar-input::placeholder,
+#zen-context-urlbar-input-tab::placeholder {
+  color: var(--zen-secondary-color, rgba(255, 255, 255, 0.4)) !important;
+}
+
+/* Suggestion dropdown rows */
+#zen-context-urlbar-suggestions,
+#zen-context-urlbar-suggestions-tab {
+  padding: 0 6px !important;
+}
+
+#zen-context-urlbar-suggestions menuitem,
+#zen-context-urlbar-suggestions-tab menuitem {
+  border-radius: 6px !important;
+  padding: 3px 10px !important;
+  font-size: 12px !important;
+  color: var(--zen-text-color, inherit) !important;
+}
+
+#zen-context-urlbar-suggestions menuitem:hover,
+#zen-context-urlbar-suggestions-tab menuitem:hover {
+  background: color-mix(in srgb, var(--zen-primary-color, #4d8eff) 20%, transparent) !important;
+}
+
+/* Globe glyph uses the Zen accent color */
+#zen-context-urlbar-row label,
+#zen-context-urlbar-row-tab label {
+  color: var(--zen-primary-color, inherit) !important;
+}
+
+/* Separator above the address bar should blend in */
+#zen-context-urlbar-sep,
+#zen-context-urlbar-sep-tab {
+  border-top: 1px solid var(--zen-button-border, rgba(255, 255, 255, 0.08)) !important;
+}
+
+/* Hide the row entirely when the mod is disabled via preference.
+ * Toggle with: about:config -> uc.contexturlbar.enabled = false */
+@media not (-moz-pref("uc.contexturlbar.enabled")) {
+  #zen-context-urlbar-row,
+  #zen-context-urlbar-sep,
+  #zen-context-urlbar-suggestions,
+  #zen-context-urlbar-row-tab,
+  #zen-context-urlbar-sep-tab,
+  #zen-context-urlbar-suggestions-tab {
+    display: none !important;
+  }
+}

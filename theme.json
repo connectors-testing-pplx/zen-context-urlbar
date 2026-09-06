@@ -1,0 +1,15 @@
+{
+  "id": "a7c3e9f1-2b4d-4e6a-8c1f-7d9b3a2e5f08",
+  "name": "Zen Context URL Bar",
+  "description": "Add a functional address bar with sidebar URL features to the right-click menu",
+  "homepage": "https://github.com/connectors-testing-pplx/zen-context-urlbar",
+  "style": "https://raw.githubusercontent.com/connectors-testing-pplx/zen-context-urlbar/main/chrome.css",
+  "readme": "https://raw.githubusercontent.com/connectors-testing-pplx/zen-context-urlbar/main/readme.md",
+  "image": "https://raw.githubusercontent.com/connectors-testing-pplx/zen-context-urlbar/main/image.png",
+  "author": "connectors-testing-pplx",
+  "version": "1.0.0",
+  "preferences": "https://raw.githubusercontent.com/connectors-testing-pplx/zen-context-urlbar/main/preferences.json",
+  "tags": ["context menu", "url bar", "address bar"],
+  "createdAt": "2026-09-06",
+  "updatedAt": "2026-09-06"
+}
