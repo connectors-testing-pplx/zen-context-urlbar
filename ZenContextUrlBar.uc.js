@@ -89,13 +89,25 @@
     if (input.startsWith("*") && input.length > 1) {
       const term = input.slice(1).trim().toLowerCase();
       try {
-        const bm = PlacesUtils.bookmarks;
-        const res = [];
-        yieldBookmarks(bm, res);
-        const hit = res.find(b =>
-          (b.title || "").toLowerCase().includes(term) ||
-          (b.url || "").toLowerCase().includes(term));
-        if (hit) return { url: hit.url, type: "bookmark" };
+        const bq = PlacesUtils.history.getNewQuery();
+        bq.searchTerms = term;
+        bq.onlyBookmarked = true;
+        const bo = PlacesUtils.history.getNewQueryOptions();
+        bo.maxResults = 50;
+        const bres = PlacesUtils.history.executeQuery(bq, bo);
+        const broot = bres.root;
+        broot.containerOpen = true;
+        for (let i = 0; i < broot.childCount; i++) {
+          const node = broot.getChild(i);
+          const t = (node.title || "").toLowerCase();
+          const u = (node.uri || "").toLowerCase();
+          if (t.includes(term) || u.includes(term)) {
+            const url = node.uri;
+            broot.containerOpen = false;
+            return { url, type: "bookmark" };
+          }
+        }
+        broot.containerOpen = false;
       } catch (e) { /* ignore */ }
     }
 
@@ -136,27 +148,6 @@
     return null;
   }
 
-  // Recursively collect bookmark urls/titles into `out`.
-  function yieldBookmarks(nodeRoot, out) {
-    const stack = [nodeRoot];
-    while (stack.length) {
-      const n = stack.pop();
-      try {
-        if (n.type === Ci.nsINavHistoryResultNode.RESULT_TYPE_URI) {
-          out.push({ title: n.title, url: n.uri });
-        } else if (n.type === Ci.nsINavHistoryResultNode.RESULT_TYPE_FOLDER) {
-          const folder = PlacesUtils.bookmarks;
-          const children = folder;
-          // iterate children if container
-          if (n.containerOpen !== undefined) {
-            n.containerOpen = true;
-            for (let i = 0; i < n.childCount; i++) stack.push(n.getChild(i));
-            n.containerOpen = false;
-          }
-        }
-      } catch (e) { /* ignore single node errors */ }
-    }
-  }
 
   // ----------------------------------------------------------- autocomplete
   // Build a small list of history + bookmark matches for the typed text.
